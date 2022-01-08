@@ -653,4 +653,47 @@
 
 // the first number will always be a[0]
 //
+// INVALID ARRAYS EXAMPLes
+// Input --> a = [121, 144, 19, 161, 19, 144, 19, 11]  
+// Output --> b = [132, 14641, 20736, 361, 25921, 361, 20736, 361]
+
+// a or b may be an empty array
+// a or b may be null if null return false
+
+//PSEUDO CODE
+// export function comp(a1: number[] | null, a2: number[] | null): boolean {
+//     if(a1 is null or a2 is null) return false
+//     let memo = {} // memo object for checking values
+//     for(loop through the a1 array and square each value and store it in a set or a memo) {
+//          let pow = Math.pow(a1[i], 2) // calculating the power of arr[i]
+//          memo[pow] = arr[i] // adding that power as the key and arr[i] as the value
+//     }
+//     for(loop through the a2 array) {
+//          let val = a2[i] 
+//          if(!(val in memo)) {
+//              return false  
+//          }
+//      }
+//     return true;
+//   }
+
+let res =  comp([121,144,19,161,19,144,19,11], [121,14641,20736,361,25921,361,20736,361])
+console.log(res)
+
+export function comp(a1: number[] | null, a2: number[] | null): boolean {
+    if(a1 === null || a2 === null) return false
+    let memo: any = {}
+    for(let i=0; i < a1.length; i++) {
+        let pow = Math.pow(a1[i], 2)
+        memo[pow] = a1[i]
+    }
+    for(let j=0; j < a2.length; j++) {
+        let val:number = a2[j]
+        if(!(val in memo)) {
+            return false
+        }
+    }
+    return true;
+}
+
   
