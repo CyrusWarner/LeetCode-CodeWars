@@ -696,6 +696,8 @@
 //     return true;
 // }
 
+
+// Codewars Which are In?
 // Input --> a1 = ["arp", "live", "strong"] a2 = ["lively", "alive", "harp", "sharp", "armstrong"]
 // Output --> returns ["arp", "live", "strong"]
 // Output --> if no substring from the a1 mathches a string in the a2 array return []
@@ -713,31 +715,58 @@
 //     }
 //      return ans
 //   }
-//
-//
-//
-//
-// 
 
-let res = inArray(["arp", "live", "strong"], ["lively", "alive", "harp", "sharp", "armstrong"])
-console.log(res)
+// let res = inArray(["arp", "live", "strong"], ["lively", "alive", "harp", "sharp", "armstrong"])
+// console.log(res)
 
-function inArray(a1: string[], a2: string[]): string[] {
-    let ans = []
-    let memo:any = {}
-    for(let i=0; i < a1.length; i++) {
-        for(let j=0; j < a2.length; j++) {
-            let index = a2[j].indexOf(a1[i])
-            if(index > -1) {
-                if(!(a1[i] in memo)) {
-                    ans.push(a1[i])
-                    memo[a1[i]] = a1[i]
-                }
-            }
-        }
+// function inArray(a1: string[], a2: string[]): string[] {
+//     let ans = []
+//     let memo:any = {}
+//     for(let i=0; i < a1.length; i++) {
+//         for(let j=0; j < a2.length; j++) {
+//             let index = a2[j].indexOf(a1[i])
+//             if(index > -1) {
+//                 if(!(a1[i] in memo)) {
+//                     ans.push(a1[i])
+//                     memo[a1[i]] = a1[i]
+//                 }
+//             }
+//         }
+//     }
+//     ans.sort()
+//     return ans
+// }
+
+// CodeWars Sums of Parts
+// Input --> ls = [0, 1, 3, 6, 10]
+// Output --> [20, 20, 19, 16, 10, 0]
+// This output is determined by this formula at 0 add itself and everything to the right together so 0 + 1 + 3 + 6 + 10.
+// At 1 we would add itself and everything to the right together so 1 + 3 + 6 + 10.
+
+// PSEUDO CODE
+// export function partsSums(ls: number[]): number[] {
+//      let ans = []
+//      while(length of array is greather than 0) {
+//          let sum = calculate value in array using javascript reduce method
+//          ls.shift()
+//      }   
+//      if needed here we will do ans.push(0)
+//      return ans
+// }
+
+let val = partsSums([0, 1, 3, 6, 10])
+console.log(val);
+
+export function partsSums(ls: number[]): number[] {
+    if(ls.length === 0) return [0] // if length ===0 do nothing and return [0]
+    let sum = ls.reduce((a, b) => a + b) // calculates the sum
+    let res  = [sum] // res holds the sum at each value starts with the original sum value
+    for (let i = 1; i <= ls.length; i++){
+        sum -= ls[i-1] // calculates the sum at each index by subtracting the previous index from the sum
+        res.push(sum) // pushes the result to the res array
     }
-    ans.sort()
-    return ans
+    return res
 }
+
 
   
