@@ -677,23 +677,67 @@
 //     return true;
 //   }
 
-let res =  comp([121,144,19,161,19,144,19,11], [121,14641,20736,361,25921,361,20736,361])
+// let res =  comp([121,144,19,161,19,144,19,11], [121,14641,20736,361,25921,361,20736,361])
+// console.log(res)
+
+// export function comp(a1: number[] | null, a2: number[] | null): boolean {
+//     if(a1 === null || a2 === null) return false
+//     let memo: any = {}
+//     for(let i=0; i < a1.length; i++) {
+//         let pow = Math.pow(a1[i], 2)
+//         memo[pow] = a1[i]
+//     }
+//     for(let j=0; j < a2.length; j++) {
+//         let val:number = a2[j]
+//         if(!(val in memo)) {
+//             return false
+//         }
+//     }
+//     return true;
+// }
+
+// Input --> a1 = ["arp", "live", "strong"] a2 = ["lively", "alive", "harp", "sharp", "armstrong"]
+// Output --> returns ["arp", "live", "strong"]
+// Output --> if no substring from the a1 mathches a string in the a2 array return []
+
+// PSEUDO CODE
+// export class G964 {
+//     public static inArray(a1: string[], a2: string[]): string[] {
+//          let ans = []
+//          for(iterate through a1) {}
+//              for(iterate through a2) {}
+//                  let index = a2[j].indexOf(a1[i])
+//                  if(index > -1) {
+//                      ans.push(a1[i])
+//                  }
+//     }
+//      return ans
+//   }
+//
+//
+//
+//
+// 
+
+let res = inArray(["arp", "live", "strong"], ["lively", "alive", "harp", "sharp", "armstrong"])
 console.log(res)
 
-export function comp(a1: number[] | null, a2: number[] | null): boolean {
-    if(a1 === null || a2 === null) return false
-    let memo: any = {}
+function inArray(a1: string[], a2: string[]): string[] {
+    let ans = []
+    let memo:any = {}
     for(let i=0; i < a1.length; i++) {
-        let pow = Math.pow(a1[i], 2)
-        memo[pow] = a1[i]
-    }
-    for(let j=0; j < a2.length; j++) {
-        let val:number = a2[j]
-        if(!(val in memo)) {
-            return false
+        for(let j=0; j < a2.length; j++) {
+            let index = a2[j].indexOf(a1[i])
+            if(index > -1) {
+                if(!(a1[i] in memo)) {
+                    ans.push(a1[i])
+                    memo[a1[i]] = a1[i]
+                }
+            }
         }
     }
-    return true;
+    ans.sort()
+    return ans
 }
 
   
