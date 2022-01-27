@@ -754,19 +754,104 @@
 //      return ans
 // }
 
-let val = partsSums([0, 1, 3, 6, 10])
-console.log(val);
+// let val = partsSums([0, 1, 3, 6, 10])
+// console.log(val);
 
-export function partsSums(ls: number[]): number[] {
-    if(ls.length === 0) return [0] // if length ===0 do nothing and return [0]
-    let sum = ls.reduce((a, b) => a + b) // calculates the sum
-    let res  = [sum] // res holds the sum at each value starts with the original sum value
-    for (let i = 1; i <= ls.length; i++){
-        sum -= ls[i-1] // calculates the sum at each index by subtracting the previous index from the sum
-        res.push(sum) // pushes the result to the res array
-    }
-    return res
-}
+// export function partsSums(ls: number[]): number[] {
+//     if(ls.length === 0) return [0] // if length ===0 do nothing and return [0]
+//     let sum = ls.reduce((a, b) => a + b) // calculates the sum
+//     let res  = [sum] // res holds the sum at each value starts with the original sum value
+//     for (let i = 1; i <= ls.length; i++){
+//         sum -= ls[i-1] // calculates the sum at each index by subtracting the previous index from the sum
+//         res.push(sum) // pushes the result to the res array
+//     }
+//     return res
+// }
 
+// export const findOdd = (xs: number[]): number => {
+//     let memo: any = {}
+//     let ans = 0
+//     for(let i=0; i < xs.length; i++) {
+//       if(memo.hasOwnProperty(xs[i])) {
+//         memo[xs[i]] += 1
+//       } else {
+//         memo[xs[i]] = 1
+//       }
+//     }
+//     let oddNum = Object.values(memo).find((val)=> {
+//         let v = val as number;
+//         return v % 2 !== 0 ? v : 0
+//     })
+//     let keyToReturn = Object.keys(memo).find(key => memo[key] === oddNum);
+//     if(keyToReturn) ans = +keyToReturn
 
+//     return ans
+// };
   
+// let res = findOdd([-1,-1,-1,2,2,3,3,4,4,5,5])
+// console.log(res);
+
+
+
+
+// PSEUDO CODE
+// function ()
+//  let s1 = num1.toString()
+//  let s2 = num2.toString()
+//  let len: number = s2.length
+// let ans: string[] = []
+//  if (s1.length > s2.length) len = s1.length
+//  for(let i=0; i < len; i++) {
+//     let sum = +s1[i] + +s1[2]
+//    ans.push(string(sum)) 
+//}
+//  let stringAns = ans.join("")
+//  return +stringAns
+//
+
+// let res = add(99, 233)
+// console.log(res);
+
+// export function add(num1: number, num2: number): number {
+//     let s1 = num1.toString()
+//     let s2 = num2.toString()
+//     let len: number = s2.length
+//     let arr: string[] = []
+//     if(s1.length > s2.length) len = s1.length
+
+//     for (let i = 0; i < len; i++) {
+//         if(s1[i] === undefined) {
+//             arr.push(s2[i])
+//             break
+//         } 
+//         if(s2[i] === undefined)   {
+//             arr.push(s1[i])
+//             break
+//         }
+//         let sum = +s1[i] + +s2[i]
+//         arr.push(sum.toString())
+//     }
+//     let stringAns = arr.join("")
+//     return +stringAns
+// }
+
+const ans = accum('abcd')
+console.log(ans)
+
+export function accum(s: string): string {
+    const strArr: string[] =[]
+    
+    for(let i=0; i < s.length; i++) {
+        strArr.push(s[i].toUpperCase())
+        if(i > 0) {
+            let count = 0
+            while(count < i) {
+                strArr.push(s[i].toLowerCase())
+                count++
+                if(count + 1 === i + 1 && i + 1 !== s.length) strArr.push('-')
+            }
+        } else {strArr.push('-')}
+    }
+
+    return strArr.join('')
+}
