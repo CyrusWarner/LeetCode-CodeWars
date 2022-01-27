@@ -835,23 +835,41 @@
 //     return +stringAns
 // }
 
-const ans = accum('abcd')
+// const ans = accum('abcd')
+// console.log(ans)
+
+// export function accum(s: string): string {
+//     const strArr: string[] =[]
+    
+//     for(let i=0; i < s.length; i++) {
+//         strArr.push(s[i].toUpperCase())
+//         if(i > 0) {
+//             let count = 0
+//             while(count < i) {
+//                 strArr.push(s[i].toLowerCase())
+//                 count++
+//                 if(count + 1 === i + 1 && i + 1 !== s.length) strArr.push('-')
+//             }
+//         } else {strArr.push('-')}
+//     }
+
+//     return strArr.join('')
+// }
+
+const ans = order('th1s 4you 2is 3for');
 console.log(ans)
 
-export function accum(s: string): string {
-    const strArr: string[] =[]
-    
-    for(let i=0; i < s.length; i++) {
-        strArr.push(s[i].toUpperCase())
-        if(i > 0) {
-            let count = 0
-            while(count < i) {
-                strArr.push(s[i].toLowerCase())
-                count++
-                if(count + 1 === i + 1 && i + 1 !== s.length) strArr.push('-')
+export function order(words: string): string {
+    const arr: string[] = words.split(' ')
+    const ans = new Array(arr.length)
+    for(let i=0; i < arr.length; i++) {
+        for(let j=0; j < arr[i].length; j++) {
+            if(!isNaN(+arr[i][j])) {
+                const newIndex = +arr[i][j] - 1
+                ans.splice(newIndex, 1, arr[i])
             }
-        } else {strArr.push('-')}
+        }
     }
 
-    return strArr.join('')
+    return ans.join(' ')
 }
